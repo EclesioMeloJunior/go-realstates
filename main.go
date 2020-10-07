@@ -1,6 +1,9 @@
 package main
 
 import (
+	"go-realstates/server"
+	"os"
+
 	"github.com/joho/godotenv"
 )
 
@@ -13,5 +16,11 @@ func init() {
 }
 
 func main() {
+	port := os.Getenv("PORT")
 
+	app := server.Run(port)
+
+	if err := app.ListenAndServe(); err != nil {
+		panic(err)
+	}
 }

@@ -4,8 +4,10 @@ WORKDIR /app
 
 COPY . .
 
-RUN go build -o realstate ./main.go
+RUN go mod download
+
+RUN go build -o realstate.so ./main.go
 
 EXPOSE 8080
 
-ENTRYPOINT [ "./realstate --port ':8080'" ]
+ENTRYPOINT [ "./realstate.so" ]
